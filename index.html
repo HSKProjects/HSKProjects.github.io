@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daily Item Log</title>
+  <link rel="stylesheet" href="item-log.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Housekeeping daily tracker</p>
+        <h1>Daily Item Log</h1>
+      </div>
+      <div class="summary-card">
+        <span id="todayCount">0</span>
+        <small>items logged today</small>
+      </div>
+    </header>
+
+    <section class="entry-panel" aria-labelledby="entryTitle">
+      <h2 id="entryTitle">New Log</h2>
+      <form id="logForm" class="log-form">
+        <label>
+          Person Name
+          <input id="personName" type="text" autocomplete="off" placeholder="Example: Maria Lopez" required>
+        </label>
+        <label>
+          Item Given
+          <input id="itemName" type="text" autocomplete="off" placeholder="Example: Towels, shampoo, key packet" required>
+        </label>
+        <label>
+          Quantity
+          <input id="quantity" type="number" min="1" step="1" value="1" required>
+        </label>
+        <label>
+          Date
+          <input id="logDate" type="date" required>
+        </label>
+        <label>
+          Day
+          <input id="logDay" type="text" readonly>
+        </label>
+        <label class="wide">
+          Notes
+          <input id="notes" type="text" autocomplete="off" placeholder="Optional details">
+        </label>
+        <button type="submit">Add Log</button>
+      </form>
+    </section>
+
+    <section class="tools-row" aria-label="Log tools">
+      <label class="search-box">
+        Search Logs
+        <input id="searchInput" type="search" placeholder="Search name, item, day, date, or notes">
+      </label>
+      <label>
+        Filter Date
+        <input id="dateFilter" type="date">
+      </label>
+      <button id="clearFilters" type="button">Clear</button>
+      <button id="exportCsv" type="button">Export CSV</button>
+    </section>
+
+    <section class="log-section" aria-labelledby="logsTitle">
+      <div class="section-heading">
+        <h2 id="logsTitle">Logs By Date</h2>
+        <p id="resultCount">0 logs found</p>
+      </div>
+      <div id="emptyState" class="empty-state">
+        No logs yet. Add the first item above.
+      </div>
+      <div id="logsContainer" class="logs-container"></div>
+    </section>
+  </main>
+
+  <template id="dateGroupTemplate">
+    <article class="date-group">
+      <button class="date-heading" type="button">
+        <span class="date-title"></span>
+        <span class="date-count"></span>
+      </button>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Name</th>
+              <th>Item</th>
+              <th>Qty</th>
+              <th>Notes</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </article>
+  </template>
+
+  <script src="item-log.js"></script>
+</body>
+</html>
